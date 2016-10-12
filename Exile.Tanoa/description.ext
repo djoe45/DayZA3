@@ -1,0 +1,102 @@
+///////////////////////////////////////////////////////////////////////////////
+// Server Settings - Modify at will
+///////////////////////////////////////////////////////////////////////////////
+author = "Exile Mod Team";
+onLoadName = "Exile Mod";
+onLoadMission= "www.exilemod.com";
+loadScreen = "exile_assets\texture\mod\logo.paa"; 
+disableChannels[] = {0, 2};
+OnLoadIntro = "";
+OnLoadIntroTime = false;
+OnLoadMissionTime = false;
+
+class Header
+{
+    gameType = Survive; // Do NOT change this
+    minPlayers = 1;
+    maxPlayers = 100;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// Exile Settings - Do not change these!
+///////////////////////////////////////////////////////////////////////////////
+forceRotorLibSimulation = 2;
+skipLobby = 1;
+joinUnassigned = 1;
+respawn = "BASE";
+respawnDelay = 120;
+respawnDialog = 0;
+respawnOnStart = 0;
+respawnButton = 1; 
+respawnTemplates[] = {"Exile"};
+corpseManagerMode = 0;
+corpseLimit = 20;
+corpseRemovalMinTime = 1800;
+corpseRemovalMaxTime = 3600;
+wreckManagerMode = 0;
+wreckLimit = 2;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 360;
+scriptedPlayer = 1;
+disabledAI = 1;
+enableItemsDropping = 0;
+briefing = 0;
+debriefing = 0;
+allowFunctionsLog = 1;
+enableDebugConsole = 1; 
+allowFunctionsRecompile = 0;
+showSquadRadar = 0;
+showUAVFeed = 0;
+reviveDelay = 6;
+reviveForceRespawnDelay = 3;
+reviveBleedOutDelay = 120;
+
+showHUD[] = 
+{
+    true,   // Scripted HUD (same as showHUD command)
+    true,   // Vehicle + soldier info
+    true,   // Vehicle radar 
+    true,   // Vehicle compass
+    true,   // Tank direction indicator
+    false,  // Commanding menu
+    false,  // Group Bar
+    true,   // HUD Weapon Cursors
+    false   // Squad Radar
+};
+
+#include "config.cpp"
+
+class CfgRemoteExec
+{
+    class Functions
+    {
+        mode = 1;
+        jip = 0;
+        class fnc_AdminReq { allowedTargets=2; };
+        class ExileServer_system_network_dispatchIncomingMessage { allowedTargets=2; };
+        class TornZ_fnc_re_z_initAll { allowedTargets=1; };
+        class TornZ_fnc_re_z_attack { allowedTargets=1; };
+    };
+
+};
+
+class CfgTornZ_Exile
+{
+	file = "tornz_exile\code\init.sqf";
+	override = 1;
+	zombies_maxLocal = 6;
+	zombies_maxLocalOverFlow = 8;
+	zombies_maxTotal = 20;
+	zombies_distance = 150;
+	zombies_distanceMax = 350;
+	zombies_distanceLosInital = 50;
+	zombies_distanceLosMax = 150;
+	zombies_distanceLosInital_EngineOff = 20;
+	zombies_spawnChance = 0.3;
+	zombies_spawnOutsideChance = 0.3;
+	zombies_lootChance = 0.4;
+	zombies_killedScore = 10;
+	ZombieRespect = 10;
+	RoadKillBonus = -5;
+	MinDistance = 50;
+};
